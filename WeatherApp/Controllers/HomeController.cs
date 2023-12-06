@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net;
+using System.Text;
 using WeatherApp.Models;
 
 namespace WeatherApp.Controllers
@@ -15,12 +17,22 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
+            var result = GetWeather(@"https://jsonplaceholder.typicode.com/todos/3");
+            ViewBag.Result = result;    
             return View();
         }
 
-        public IActionResult Privacy()
+        public string GetWeather(string uri)
         {
-            return View();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
