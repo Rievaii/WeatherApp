@@ -18,8 +18,7 @@ namespace WeatherApp.Controllers
         public IActionResult Index()
         {
             
-            var result = forecastHandler.GetWeather(@"https://jsonplaceholder.typicode.com/todos/3");
-            ViewBag.Result = result;    
+            var task = Task.Run(async () => await forecastHandler.GetWeather(55.75396, 37.620393));
             return View();
         }
 

@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "ij7baS+4y5uU8FW72kLYBhKIStINcpmR5fsW8AbOvjPib8koXx/Wowawu3DcA4FzOUov5z2t1xAJumEouousYw==",
+  "dgSpecHash": "GkbpnJVNhmcmCVIoJU6NXq1ZlKBzbExnT/DG9wp00D52epgK3U7eYROPPt1RV602Zd3cXN9896jZTjRmRYFrhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\WeatherApp.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\WeatherApp\\WeatherApp\\WeatherApp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.aspnetcore.authentication.negotiate\\7.0.14\\microsoft.aspnetcore.authentication.negotiate.7.0.14.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\7.0.14\\microsoft.aspnetcore.connections.abstractions.7.0.14.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.extensions.features\\7.0.14\\microsoft.extensions.features.7.0.14.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\system.directoryservices.protocols\\7.0.1\\system.directoryservices.protocols.7.0.1.nupkg.sha512",
-    "C:\\Users\\vorontsov.gv\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.negotiate\\7.0.14\\microsoft.aspnetcore.authentication.negotiate.7.0.14.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\7.0.14\\microsoft.aspnetcore.connections.abstractions.7.0.14.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.features\\7.0.14\\microsoft.extensions.features.7.0.14.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.directoryservices.protocols\\7.0.1\\system.directoryservices.protocols.7.0.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }
