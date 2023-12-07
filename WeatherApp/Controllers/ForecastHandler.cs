@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace WeatherApp.Controllers
 {
@@ -12,20 +14,20 @@ namespace WeatherApp.Controllers
             //String.Format(@"https://api.weather.yandex.ru/v2/informers?lat={0}&lon={1}", latitude, longitude)
             //request.Headers.Add("X-Yandex-API-Key", "d7652fca-3c44-40b9-80a0-179e577d39c9");
 
-            HttpClient httpClient = new HttpClient();
             //https://jsonplaceholder.typicode.com
             //https://api.weather.yandex.ru
-            httpClient.BaseAddress = new Uri(@"https://jsonplaceholder.typicode.com");
-            httpClient.DefaultRequestHeaders.Add("X-Yandex-API-Key", "d7652fca-3c44-40b9-80a0-179e577d39c9");
-               
 
-            using HttpResponseMessage response =  httpClient.GetAsync("todos/3");
-            response.Headers.Add("X-Yandex-API-Key", "d7652fca-3c44-40b9-80a0-179e577d39c9");
 
-            response.EnsureSuccessStatusCode();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://api.weather.yandex.ru/v2/informers/");
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            request.Headers.Add("X-Yandex-API-Key", "d7652fca-3c44-40b9-80a0-179e577d39c9");
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
 
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            Console.WriteLine($"{jsonResponse}\n");
         }
     }
 }

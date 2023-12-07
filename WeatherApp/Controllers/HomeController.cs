@@ -9,16 +9,16 @@ namespace WeatherApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        ForecastHandler forecastHandler = new ForecastHandler();
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-        ForecastHandler forecastHandler = new ForecastHandler();    
         public IActionResult Index()
         {
-            
-            var task = Task.Run(async () => await forecastHandler.GetWeather(55.75396, 37.620393));
+            var forecast = forecastHandler.GetWeather(55.75396, 37.620393);
+            ViewBag.Forecast = forecast;
             return View();
         }
 
