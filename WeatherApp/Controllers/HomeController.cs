@@ -18,7 +18,7 @@ namespace WeatherApp.Controllers
         public IActionResult Index()
         {
             var forecast = forecastHandler.GetWeather(55.75396, 37.620393);
-            ViewBag.Forecast = forecast;
+            ViewBag.Result = forecast;
             return View();
         }
 

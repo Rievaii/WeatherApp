@@ -18,9 +18,9 @@ namespace WeatherApp.Controllers
             //https://api.weather.yandex.ru
 
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://api.weather.yandex.ru/v2/informers/");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://api.openweathermap.org/data/2.5/find?q=Petersburg,RU&type=like&APPID=bf67c183f4735841de205d2e3fa7ed34");
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            request.Headers.Add("X-Yandex-API-Key", "d7652fca-3c44-40b9-80a0-179e577d39c9");
+            request.Method = "GET";
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             using (Stream stream = response.GetResponseStream())
             using (StreamReader reader = new StreamReader(stream))
