@@ -9,25 +9,18 @@ namespace WeatherApp.Controllers
     public class ForecastHandler : Controller
     {
         //Получение погоды по долготе и широте
-        public string GetWeather(double longitude, double latitude)
+        public static async Task<string> GetWeather(double longitude, double latitude)
         {
-            //String.Format(@"https://api.weather.yandex.ru/v2/informers?lat={0}&lon={1}", latitude, longitude)
-            //request.Headers.Add("X-Yandex-API-Key", "d7652fca-3c44-40b9-80a0-179e577d39c9");
-
-            //https://jsonplaceholder.typicode.com
-            //https://api.weather.yandex.ru
-
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://api.openweathermap.org/data/2.5/find?q=Petersburg,RU&type=like&APPID=bf67c183f4735841de205d2e3fa7ed34");
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            request.Method = "GET";
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            HttpClient client = new HttpClient() 
             {
-                return reader.ReadToEnd();
-            }
+                BaseAddress = new Uri("http://api.openweathermap.org")
+            };
 
+            using HttpResponseMessage response = await client.GetAsync(String.Format("data/2.5/weather?lat={0}&lon={1}&APPID=bf67c183f4735841de205d2e3fa7ed34", longitude, latitude));
+            response.EnsureSuccessStatusCode();
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return jsonResponse;
         }
     }
 }

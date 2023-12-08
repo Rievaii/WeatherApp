@@ -258,3 +258,10 @@ _Pvt_Extensions
 *.vsidx
 *.v2
 .vs/WeatherApp/v17/.suo
+*.bin
+*.v2
+*.v2
+.vs/WeatherApp/v17/.suo
+*.dll
+*.dll
+*.pdb
