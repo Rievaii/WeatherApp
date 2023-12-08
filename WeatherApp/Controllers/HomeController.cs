@@ -8,10 +8,8 @@ namespace WeatherApp.Controllers
         public async Task<IActionResult> Index()
         {
             var forecast = await ForecastHandler.GetWeather(55.811852, 37.567078);
-            ViewBag.Result = forecast;
+            ViewBag.Result = forecast.main.Temp;
             return View();
         }
-
-       
     }
 }
