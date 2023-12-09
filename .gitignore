@@ -266,3 +266,4 @@ _Pvt_Extensions
 *.dll
 *.pdb
 *.pdb
+*.editorconfig
