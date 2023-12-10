@@ -5,11 +5,21 @@ namespace WeatherApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly WeatherDataContext ctx;
+
+        public HomeController(WeatherDataContext _ctx)
+        {
+            ctx = _ctx;
+        }
+
         public async Task<IActionResult> Index()
         {
             var forecast = await ForecastHandler.GetWeatherByCoords(37.3263, 55.82633);
             ViewBag.Result = forecast;
-            return View();
+            
+            ViewBag.FirstUser = ctx.Users.Where(x => x.Id == 1).FirstOrDefault().Login;
+            
+                return View();
         }
     }
 }
