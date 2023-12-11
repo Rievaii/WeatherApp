@@ -3,6 +3,7 @@ using System.Runtime.InteropServices.JavaScript;
 using WeatherApp.Models;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
+using System.Net.NetworkInformation;
 
 namespace WeatherApp.Controllers
 {
@@ -27,6 +28,21 @@ namespace WeatherApp.Controllers
 
             return jsonResponse ?? throw new Exception("Не удается получить прогноз погоды");
             
+        }
+
+        public static async Task<string> GetLocationByName(string locationName)
+        {
+            HttpClient client = new HttpClient()
+            {
+                BaseAddress = new Uri("http://api.openweathermap.org")
+            };
+            string apiKey = "bf67c183f4735841de205d2e3fa7ed34";
+            using HttpResponseMessage response = await client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", locationName, apiKey));
+            response.EnsureSuccessStatusCode();
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+            return jsonResponse;
+
         }
 
     }

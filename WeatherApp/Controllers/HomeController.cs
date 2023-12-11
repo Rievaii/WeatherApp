@@ -15,14 +15,10 @@ namespace WeatherApp.Controllers
         public async Task<IActionResult> Index()
         {
             var forecast = await ForecastHandler.GetWeatherByCoords(37.3263, 55.82633);
+            var location = await ForecastHandler.GetLocationByName("Moscow");
             ViewBag.Result = forecast;
-            
+            ViewBag.Location = location;
             ViewBag.FirstUser = ctx.Users.Where(x => x.Id == 1).FirstOrDefault().Login;
-            //ctx.Users.Add(new UsersModel() {
-            //    Login  = "TestUser",
-            //    Password = "123"
-            //});
-            //ctx.SaveChanges();
                 return View();
         }
     }
