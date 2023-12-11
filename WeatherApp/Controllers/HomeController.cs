@@ -18,7 +18,11 @@ namespace WeatherApp.Controllers
             ViewBag.Result = forecast;
             
             ViewBag.FirstUser = ctx.Users.Where(x => x.Id == 1).FirstOrDefault().Login;
-            
+            //ctx.Users.Add(new UsersModel() {
+            //    Login  = "TestUser",
+            //    Password = "123"
+            //});
+            //ctx.SaveChanges();
                 return View();
         }
     }

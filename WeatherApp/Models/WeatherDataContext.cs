@@ -9,9 +9,8 @@ namespace WeatherApp.Models
         {
         }
 
-        // DbSet<TEntity> для каждой сущности в вашей базе данных
         public DbSet<UsersModel> Users { get; set; }
-
-        
+        public DbSet<LocationsModel> Locations { get; set; }    
+        public DbSet<SessionsModel> Sessions { get; set; }
     }
 }
