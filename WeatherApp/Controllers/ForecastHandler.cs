@@ -30,7 +30,7 @@ namespace WeatherApp.Controllers
             
         }
 
-        public static async Task<string> GetLocationByName(string locationName)
+        public static async Task<LocationGuessModel> GetLocationByName(string locationName)
         {
             HttpClient client = new HttpClient()
             {
@@ -39,9 +39,8 @@ namespace WeatherApp.Controllers
             string apiKey = "bf67c183f4735841de205d2e3fa7ed34";
             using HttpResponseMessage response = await client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", locationName, apiKey));
             response.EnsureSuccessStatusCode();
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-
-            return jsonResponse;
+            var jsonResponse = await response.Content.ReadFromJsonAsync<List<LocationGuessModel>>();
+            return jsonResponse.First();
 
         }
 
