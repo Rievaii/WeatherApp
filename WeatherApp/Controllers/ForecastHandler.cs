@@ -15,6 +15,8 @@ namespace WeatherApp.Controllers
         /// </summary>
         /// <param name="longitude">Долгота</param>
         /// <param name="latitude">Широта</param>
+        /// <returns>ForecastModel by lon & lat</returns>
+
         public static async Task<ForecastModel> GetWeatherByCoords(double longitude, double latitude)
         {
             HttpClient client = new HttpClient()
@@ -30,17 +32,23 @@ namespace WeatherApp.Controllers
             
         }
 
-        public static async Task<LocationGuessModel> GetLocationByName(string locationName)
+        /// <summary>
+        /// Call api to retrieve assigned by prompt locations 
+        /// </summary>
+        /// <param name="prompt">Prompt to API search</param>
+        /// <returns>A collection of found 5 locations</returns>
+        public static async Task<List<LocationGuessModel>> GetLocationByName(string prompt)
         {
             HttpClient client = new HttpClient()
             {
                 BaseAddress = new Uri("http://api.openweathermap.org")
             };
             string apiKey = "bf67c183f4735841de205d2e3fa7ed34";
-            using HttpResponseMessage response = await client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", locationName, apiKey));
+            using HttpResponseMessage response = await client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", prompt, apiKey));
             response.EnsureSuccessStatusCode();
             var jsonResponse = await response.Content.ReadFromJsonAsync<List<LocationGuessModel>>();
-            return jsonResponse.First();
+            //change to return list of suggested locations
+            return jsonResponse;
 
         }
 
