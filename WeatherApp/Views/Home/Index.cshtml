@@ -4,8 +4,11 @@
 
 <div class="text-center">
     <div class="input-group">
-  <input type="search" class="form-control rounded" placeholder="Какая сегодня погода в ..." aria-label="Search" aria-describedby="search-addon" id="searchInput"/>
-  <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init onclick="testfunc()">Поиск</button>
-</div>
+        <input type="search" class="form-control rounded" placeholder="Какая сегодня погода в ..." aria-label="Search" aria-describedby="search-addon" id="searchInput" />
+        
+        <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init onclick="SuggestLocations()">Поиск</button>
+    </div>
+    <ul class="list-group list-group-horizontal-lg" id="locationslist">
+    </ul>
 </div>
 

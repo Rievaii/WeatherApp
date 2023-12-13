@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Nodes;
 using WeatherApp.Models;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,6 +10,7 @@ namespace WeatherApp.Controllers
     [ApiController]
     public class ForecastApiController : ControllerBase
     {
+
         // GET: api/<ForecastApiController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -19,9 +20,9 @@ namespace WeatherApp.Controllers
 
         // GET ForecastApiController/Moscow
         [HttpGet("{prompt}")]
-        public async Task<LocationGuessModel> GetLocationByName(string prompt)
+        public async Task<IEnumerable<LocationGuessModel>> GetLocationByName(string prompt)
         {
-            return await ForecastHandler.GetLocationByName(prompt);  
+            return await ForecastHandler.GetLocationsByName(prompt);  
         }
 
         // POST api/<ForecastApiController>
