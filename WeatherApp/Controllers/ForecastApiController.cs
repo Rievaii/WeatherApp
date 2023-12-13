@@ -25,6 +25,13 @@ namespace WeatherApp.Controllers
             return await ForecastHandler.GetLocationsByName(prompt);  
         }
 
+        // GET ForecastApiController/s
+        [HttpGet]
+        public async Task<ForecastModel> GetWeatherByCoords(double lat, double lon)
+        {
+            return await ForecastHandler.GetWeatherByCoords(lon, lat);
+        }
+
         // POST api/<ForecastApiController>
         [HttpPost]
         public void Post([FromBody] string value)

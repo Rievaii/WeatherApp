@@ -47,9 +47,8 @@ namespace WeatherApp.Controllers
             using HttpResponseMessage response = await client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", prompt, apiKey));
             response.EnsureSuccessStatusCode();
             var jsonResponse = await response.Content.ReadFromJsonAsync<IEnumerable<LocationGuessModel>>();
-            //limit 12?
-            return jsonResponse;
-
+            //if timeout generate random value for testing
+            return jsonResponse ?? throw new Exception("Такой локации не было найдено");
         }
 
     }
