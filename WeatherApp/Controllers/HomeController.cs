@@ -12,9 +12,14 @@ namespace WeatherApp.Controllers
             ctx = _ctx;
         }
 
-        public IActionResult Index()
+        public  IActionResult Index()
         {
-            return View();
+            //get users first saved model from db 
+            var model = new ForecastModel() { Name = "test"};
+            //get from location guesser join by lon lat from json list
+            ViewBag.State = "Alaska";
+            ViewBag.Country = "US";
+            return View(model);
         }
     }
 }

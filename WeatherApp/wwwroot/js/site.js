@@ -36,7 +36,7 @@
 function SuggestLocations() {
     var prompt = document.getElementById("searchInput").value;
     var ul = document.getElementById("locationslist");
-    
+    //change to value from json 
     $.ajax({
         url: '/forecastapicontroller/' + prompt,
         method: 'get',
@@ -44,7 +44,6 @@ function SuggestLocations() {
         datatype: 'json',
         success: function (data) {  
             ul.replaceChildren();
-            debugger;
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
                     var li = document.createElement("li");
@@ -69,18 +68,20 @@ function SuggestLocations() {
     });
 }
 function TriggerSuggestion(state, name, lat, lon) {
-    debugger;
+    //set UI 
     document.getElementById("searchInput").value = state + " | "+name + " (" + lat + ", " + lon + ")";
     document.getElementById("locationslist").replaceChildren();
+    SetForecast(lat, lon)
+}
 
-
+function SetForecast(lat, lon) {
     $.ajax({
-        url: '/forecastapicontroller/'+lat +"/"+lon,
+        url: '/forecastapicontroller/' + lat + "/" + lon,
         method: 'get',
         /* (xml, json, script, html).*/
         datatype: 'json',
         success: function (data) {
-           
+
         },
         error: function () {
             alert("Возникла ошибка при запросе");

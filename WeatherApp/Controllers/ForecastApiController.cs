@@ -25,9 +25,11 @@ namespace WeatherApp.Controllers
         }
 
         // POST <ForecastApiController>/ForecastModel 
-        [HttpPost]
-        public void Post([FromBody] ForecastModel currestForecast)
+        [HttpPost()]
+        public void SetForecast([FromBody] ForecastModel currestForecast)
         {
+            //check if location is new for user if not add 
+            //update mode l
         }
     }
 }

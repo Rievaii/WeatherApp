@@ -39,6 +39,20 @@ namespace WeatherApp.Controllers
         /// <returns>A collection of found 5 locations</returns>
         public static async Task<IEnumerable<LocationGuessModel>> GetLocationsByName(string prompt)
         {
+            using (StreamReader r = new StreamReader("city.list.json"))
+            {
+                //check if we have requested city locally
+                IEnumerable<LocationGuessModel> foundLocations;
+                string json = r.ReadToEnd();
+                if (!string.IsNullOrEmpty(json))
+                {
+                    //limit 5
+                    foundLocations = JsonConvert.DeserializeObject<List<LocationGuessModel>>(json).Where(x => x.Name == prompt).Take(5).ToList();
+                    if(foundLocations.Any())
+                        return foundLocations;
+                }
+            }
+            
             HttpClient client = new HttpClient()
             {
                 BaseAddress = new Uri("http://api.openweathermap.org")

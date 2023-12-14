@@ -1,4 +1,6 @@
-﻿namespace WeatherApp.Models
+﻿using System.ComponentModel;
+
+namespace WeatherApp.Models
 {
     public class ForecastModel
     {
