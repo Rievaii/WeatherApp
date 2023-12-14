@@ -181,8 +181,16 @@
       "PackagePath": "staticwebassets\\WeatherApp.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\searchIcon.png",
-      "PackagePath": "staticwebassets\\Resources\\searchIcon.png"
+      "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\background.jpg",
+      "PackagePath": "staticwebassets\\Resources\\background.jpg"
+    },
+    {
+      "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\city.list.json",
+      "PackagePath": "staticwebassets\\Resources\\city.list.json"
+    },
+    {
+      "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\free-icon-humidity-1585362 (1).png",
+      "PackagePath": "staticwebassets\\Resources\\free-icon-humidity-1585362 (1).png"
     },
     {
       "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\css\\MainTheme.css",

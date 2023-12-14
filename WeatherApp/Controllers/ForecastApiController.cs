@@ -10,14 +10,6 @@ namespace WeatherApp.Controllers
     [ApiController]
     public class ForecastApiController : ControllerBase
     {
-
-        // GET: api/<ForecastApiController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET ForecastApiController/Moscow
         [HttpGet("{prompt}")]
         public async Task<IEnumerable<LocationGuessModel>> GetLocationByName(string prompt)
@@ -25,28 +17,16 @@ namespace WeatherApp.Controllers
             return await ForecastHandler.GetLocationsByName(prompt);  
         }
 
-        // GET ForecastApiController/s
-        [HttpGet]
+        // GET ForecastApiController/lat/lon
+        [HttpGet("{lat}/{lon}")]
         public async Task<ForecastModel> GetWeatherByCoords(double lat, double lon)
         {
             return await ForecastHandler.GetWeatherByCoords(lon, lat);
         }
 
-        // POST api/<ForecastApiController>
+        // POST <ForecastApiController>/ForecastModel 
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ForecastApiController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ForecastApiController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Post([FromBody] ForecastModel currestForecast)
         {
         }
     }

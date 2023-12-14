@@ -75,7 +75,7 @@ function TriggerSuggestion(state, name, lat, lon) {
 
 
     $.ajax({
-        url: '/forecastapicontroller/' + prompt,
+        url: '/forecastapicontroller/'+lat +"/"+lon,
         method: 'get',
         /* (xml, json, script, html).*/
         datatype: 'json',
