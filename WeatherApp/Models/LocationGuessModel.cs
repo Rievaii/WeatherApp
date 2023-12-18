@@ -5,10 +5,11 @@
 
         public string Name { get; set; }
         //public required LocalNames localNames { get; set; }
-        public double Lat { get; set; }
-        public double Lon { get; set; }
+        public Coord coord { get; set; }
+
         public string Country { get; set; }
         public string State { get; set; }
+
 
 
         //public class LocalNames
@@ -151,5 +152,11 @@
         //    public string Ga { get; set; }
         //    public string Kk { get; set; }
         //}
+        
+    }
+    public class Coord
+    {
+        public double lon { get; set; }
+        public double lat { get; set; }
     }
 }

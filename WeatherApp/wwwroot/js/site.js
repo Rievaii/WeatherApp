@@ -47,8 +47,8 @@ function SuggestLocations() {
                 }
             }           
         },
-        error: function () {
-            alert("Возникла ошибка при запросе");
+        error: function (error) {
+            alert(error);
         }
     });
 }

@@ -4,6 +4,7 @@ using WeatherApp.Models;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using System.Net.NetworkInformation;
+using System;
 
 namespace WeatherApp.Controllers
 {
@@ -47,22 +48,24 @@ namespace WeatherApp.Controllers
                 if (!string.IsNullOrEmpty(json))
                 {
                     //limit 5
-                    foundLocations = JsonConvert.DeserializeObject<List<LocationGuessModel>>(json).Where(x => x.Name == prompt).Take(5).ToList();
-                    if(foundLocations.Any())
+                    foundLocations = JsonConvert.DeserializeObject<List<LocationGuessModel>>(json).Where(x => x.Name.ToLower() == prompt.ToLower());
+                    var test = 1;
+                    if (foundLocations.Any())
                         return foundLocations;
                 }
             }
-            
-            HttpClient client = new HttpClient()
-            {
-                BaseAddress = new Uri("http://api.openweathermap.org")
-            };
-            string apiKey = "bf67c183f4735841de205d2e3fa7ed34";
-            using HttpResponseMessage response =  client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", prompt, apiKey)).Result;
-            response.EnsureSuccessStatusCode();
-            var jsonResponse =  response.Content.ReadFromJsonAsync<IEnumerable<LocationGuessModel>>().Result;
-            //if timeout generate random value for testing
-            return jsonResponse ?? throw new Exception("Такой локации не было найдено");
+            throw new Exception("Такой локации не было найдено");
+            return null;
+            //HttpClient client = new HttpClient()
+            //{
+            //    BaseAddress = new Uri("http://api.openweathermap.org")
+            //};
+            //string apiKey = "bf67c183f4735841de205d2e3fa7ed34";
+            //using HttpResponseMessage response = client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", prompt, apiKey)).Result;
+            //response.EnsureSuccessStatusCode();
+            //var jsonResponse = response.Content.ReadFromJsonAsync<IEnumerable<LocationGuessModel>>().Result;
+            ////if timeout generate random value for testing
+            //return jsonResponse ?? throw new Exception("Такой локации не было найдено");
         }
 
     }

@@ -14,7 +14,8 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new ForecastModel();
+            return View(model);
         }
 
         // ForecastApiController/lat/lon
