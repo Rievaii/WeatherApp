@@ -17,16 +17,16 @@ namespace WeatherApp.Controllers
         /// <param name="latitude">Широта</param>
         /// <returns>ForecastModel by lon & lat</returns>
 
-        public static async Task<ForecastModel> GetWeatherByCoords(double longitude, double latitude)
+        public static ForecastModel GetWeatherByCoords(double longitude, double latitude)
         {
             HttpClient client = new HttpClient()
             {
                 BaseAddress = new Uri("http://api.openweathermap.org")
             };
             string apiKey = "bf67c183f4735841de205d2e3fa7ed34";
-            using HttpResponseMessage response = await client.GetAsync(String.Format("data/2.5/weather?lat={0}&lon={1}&APPID={2}&units=metric&lang=ru", latitude, longitude, apiKey));
+            using HttpResponseMessage response =  client.GetAsync(String.Format("data/2.5/weather?lat={0}&lon={1}&APPID={2}&units=metric&lang=ru", latitude, longitude, apiKey)).Result;
             response.EnsureSuccessStatusCode();
-            var jsonResponse = await response.Content.ReadFromJsonAsync<ForecastModel>();
+            var jsonResponse = response.Content.ReadFromJsonAsync<ForecastModel>().Result;
 
             return jsonResponse ?? throw new Exception("Не удается получить прогноз погоды");
             
@@ -37,7 +37,7 @@ namespace WeatherApp.Controllers
         /// </summary>
         /// <param name="prompt">Prompt to API search</param>
         /// <returns>A collection of found 5 locations</returns>
-        public static async Task<IEnumerable<LocationGuessModel>> GetLocationsByName(string prompt)
+        public static IEnumerable<LocationGuessModel> GetLocationsByName(string prompt)
         {
             using (StreamReader r = new StreamReader(Path.Combine(Environment.CurrentDirectory, "wwwroot/Resources/city.list.json")))
             {
@@ -58,9 +58,9 @@ namespace WeatherApp.Controllers
                 BaseAddress = new Uri("http://api.openweathermap.org")
             };
             string apiKey = "bf67c183f4735841de205d2e3fa7ed34";
-            using HttpResponseMessage response = await client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", prompt, apiKey));
+            using HttpResponseMessage response =  client.GetAsync(String.Format("/geo/1.0/direct?q={0}&limit=5&appid={1}", prompt, apiKey)).Result;
             response.EnsureSuccessStatusCode();
-            var jsonResponse = await response.Content.ReadFromJsonAsync<IEnumerable<LocationGuessModel>>();
+            var jsonResponse =  response.Content.ReadFromJsonAsync<IEnumerable<LocationGuessModel>>().Result;
             //if timeout generate random value for testing
             return jsonResponse ?? throw new Exception("Такой локации не было найдено");
         }

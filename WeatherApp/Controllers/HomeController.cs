@@ -20,9 +20,9 @@ namespace WeatherApp.Controllers
         // ForecastApiController/lat/lon
         public IActionResult Forecast(double lat, double lon)
         {
-            var forecast = Task.Run(() => ForecastHandler.GetWeatherByCoords(lon, lat)).Result;
+            var forecast = ForecastHandler.GetWeatherByCoords(lon, lat);
             ViewBag.Country = "RU";
-            return View(forecast);
+            return View("Index", forecast);
         }
     }
 }

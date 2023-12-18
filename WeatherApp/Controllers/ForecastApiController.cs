@@ -12,9 +12,9 @@ namespace WeatherApp.Controllers
     {
         // GET ForecastApiController/Moscow
         [HttpGet("{prompt}")]
-        public async Task<IEnumerable<LocationGuessModel>> GetLocationByName(string prompt)
+        public  IEnumerable<LocationGuessModel> GetLocationByName(string prompt)
         {
-            return await ForecastHandler.GetLocationsByName(prompt);  
+            return  ForecastHandler.GetLocationsByName(prompt);  
         }
     }
 }
