@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using WeatherApp.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WeatherApp.Controllers
 {
@@ -14,16 +17,14 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
-            var model = new ForecastModel();
-            return View(model);
+            return View();
         }
 
         // ForecastApiController/lat/lon
         public IActionResult Forecast(double lat, double lon)
         {
-            var forecast = ForecastHandler.GetWeatherByCoords(lon, lat);
-            ViewBag.Country = "RU";
-            return View("Index", forecast);
+            var model = ForecastHandler.GetWeatherByCoords(lon, lat);
+            return View(model);
         }
     }
 }

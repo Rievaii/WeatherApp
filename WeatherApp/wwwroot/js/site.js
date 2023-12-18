@@ -66,6 +66,7 @@ function TriggerSuggestion(state, name, lat, lon) {
         /* (xml, json, script, html).*/
         datatype: 'json',
         success: function (data) {
+            $('#ForecastPartial').load('/home/Forecast');
         },
         error: function () {
             alert("Возникла ошибка при запросе");
