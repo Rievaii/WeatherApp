@@ -16,20 +16,5 @@ namespace WeatherApp.Controllers
         {
             return await ForecastHandler.GetLocationsByName(prompt);  
         }
-
-        // GET ForecastApiController/lat/lon
-        [HttpGet("{lat}/{lon}")]
-        public async Task<ForecastModel> GetWeatherByCoords(double lat, double lon)
-        {
-            return await ForecastHandler.GetWeatherByCoords(lon, lat);
-        }
-
-        // POST <ForecastApiController>/ForecastModel 
-        [HttpPost()]
-        public void SetForecast([FromBody] ForecastModel currestForecast)
-        {
-            //check if location is new for user if not add 
-            //update mode l
-        }
     }
 }

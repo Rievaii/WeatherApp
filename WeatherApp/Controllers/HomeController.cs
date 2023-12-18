@@ -12,14 +12,17 @@ namespace WeatherApp.Controllers
             ctx = _ctx;
         }
 
-        public  IActionResult Index()
+        public IActionResult Index()
         {
-            //get users first saved model from db 
-            var model = new ForecastModel() { Name = "test"};
-            //get from location guesser join by lon lat from json list
-            ViewBag.State = "Alaska";
-            ViewBag.Country = "US";
-            return View(model);
+            return View();
+        }
+
+        // ForecastApiController/lat/lon
+        public IActionResult Forecast(double lat, double lon)
+        {
+            var forecast = Task.Run(() => ForecastHandler.GetWeatherByCoords(lon, lat)).Result;
+            ViewBag.Country = "RU";
+            return View(forecast);
         }
     }
 }

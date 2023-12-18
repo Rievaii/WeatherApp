@@ -1,4 +1,4 @@
-﻿//var typingTimer;                //timer identifier
+﻿//var typingTimer;               
 //var doneTypingInterval = 3000;
 //var $input = $('#searchInput');
 
@@ -12,23 +12,8 @@
 //});
 
 //function doneTyping() {
-//    //only if null
-//    //$("#locations").empty();
-//    var options = [];
-//    //Get all suggested location
-//    $.get(
-//        "/forecastapicontroller/Moscow",
-//        function (data) {
-//            if (data.length > 0) {
-//                for (let i = 0; i < data.length; i++) {
-//                    options[i] = new Option(data[i].country +  "-" + data[i].state, data[i].name);
-//                }
-//                $("#locations").append(options);
-//            }
-//        }
-//    );
+//    SuggestLocations();
 //}
-
 
 
 
@@ -67,24 +52,25 @@ function SuggestLocations() {
         }
     });
 }
+
 function TriggerSuggestion(state, name, lat, lon) {
-    //set UI 
     document.getElementById("searchInput").value = state + " | "+name + " (" + lat + ", " + lon + ")";
     document.getElementById("locationslist").replaceChildren();
-    SetForecast(lat, lon)
-}
-
-function SetForecast(lat, lon) {
     $.ajax({
-        url: '/forecastapicontroller/' + lat + "/" + lon,
-        method: 'get',
+        url: '/home/Forecast?lat=' + lat + "&lon=" + lon,
+        method: 'post',
         /* (xml, json, script, html).*/
         datatype: 'json',
         success: function (data) {
-
         },
         error: function () {
             alert("Возникла ошибка при запросе");
         }
     });
 }
+
+$(document).keypress(function (e) {
+    if (e.which == 13) {
+        $("#searchButton").click();
+    }
+});

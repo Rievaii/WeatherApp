@@ -267,3 +267,4 @@ _Pvt_Extensions
 *.pdb
 *.pdb
 *.editorconfig
+*.cache

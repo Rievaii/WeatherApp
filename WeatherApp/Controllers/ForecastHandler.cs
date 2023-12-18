@@ -39,7 +39,7 @@ namespace WeatherApp.Controllers
         /// <returns>A collection of found 5 locations</returns>
         public static async Task<IEnumerable<LocationGuessModel>> GetLocationsByName(string prompt)
         {
-            using (StreamReader r = new StreamReader("city.list.json"))
+            using (StreamReader r = new StreamReader(Path.Combine(Environment.CurrentDirectory, "wwwroot/Resources/city.list.json")))
             {
                 //check if we have requested city locally
                 IEnumerable<LocationGuessModel> foundLocations;
