@@ -30,20 +30,24 @@ function SuggestLocations() {
         success: function (data) {  
             ul.replaceChildren();
             if (data.length > 0) {
+                debugger;
                 for (let i = 0; i < data.length; i++) {
-                    var li = document.createElement("li");
-                    li.classList.add("list-group-item");
-                    var children = ul.children.length + 1
-                    li.setAttribute("id", "element" + children)
-                    li.setAttribute("style", "cursor:pointer")
-                    //TODO: fix this trash TriggerSuggestion(state, name, lat, lon)
-                    li.setAttribute("onclick", "TriggerSuggestion(" +
-                        "'" + data[i].state + "'" + "," +
-                        "'" + data[i].name + "'" + "," +
-                        data[i].lat + "," +
-                        data[i].lon + ")")
-                    li.appendChild(document.createTextNode(data[i].country + "-" + data[i].state + " | " + data[i].name));
-                    ul.appendChild(li)
+                    //6 - max li elements - const fixed by UI 
+                    if (i < 6) {
+                        var li = document.createElement("li");
+                        li.classList.add("list-group-item");
+                        var children = ul.children.length + 1
+                        li.setAttribute("id", "element" + children)
+                        li.setAttribute("style", "cursor:pointer")
+                        //TODO: fix this trash TriggerSuggestion(state, name, lat, lon)
+                        li.setAttribute("onclick", "TriggerSuggestion(" +
+                            "'" + data[i].state + "'" + "," +
+                            "'" + data[i].name + "'" + "," +
+                            data[i].coord.lat + "," +
+                            data[i].coord.lon + ")")
+                        li.appendChild(document.createTextNode(data[i].country + "-" + data[i].state + " | " + data[i].name));
+                        ul.appendChild(li)
+                    }
                 }
             }           
         },
