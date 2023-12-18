@@ -14,18 +14,19 @@
                     </div> *@
                     <div class="card-img-overlay text-dark p-5">
                         <h4 class="mb-0">@Model.Name, @ViewBag.State, @ViewBag.Country</h4>
-                        <p class="display-2 my-3">1.28°C</p>
-                        <p class="mb-2">Feels Like: <strong>-1.08 °C</strong></p>
+                        <p class="display-2 my-3">@Model.main.Temp°C</p>
+                        <p class="mb-2">Feels Like: <strong>@Model.main.Feels_like °C</strong></p>
+                        @*TODO:check what exactly weather element*@
                         <h5>Snowy</h5>
                         <ul class="list-group list-group-horizontal-lg justify-content-center" id="locationslist">
                             <li class="list-group-item">
                                 <img src="https://i.imgur.com/B9kqOzp.png" height="17px">
 
-                                <span> wind km/h  </span>
+                                <span> @Model.wind?.Speed km/h  </span>
                             </li>
                             <li class="list-group-item">
                                 <img src="~/Resources/free-icon-humidity-1585362 (1).png" height="17px">
-                                <span> 84% </span>
+                                <span> @Model.main.Humidity% </span>
                             </li>
                             <li class="list-group-item">
                                 <img src="https://i.imgur.com/wGSJ8C5.png" height="17px">

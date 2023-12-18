@@ -30,7 +30,6 @@ function SuggestLocations() {
         success: function (data) {  
             ul.replaceChildren();
             if (data.length > 0) {
-                debugger;
                 for (let i = 0; i < data.length; i++) {
                     //6 - max li elements - const fixed by UI 
                     if (i < 6) {
@@ -66,7 +65,8 @@ function TriggerSuggestion(state, name, lat, lon) {
         /* (xml, json, script, html).*/
         datatype: 'json',
         success: function (data) {
-            $('#ForecastPartial').load('/home/Forecast');
+            //this calls 2 times
+            $('#ForecastPartial').load('/home/Forecast?lat=' + lat + "&lon=" + lon);
         },
         error: function () {
             alert("Возникла ошибка при запросе");
