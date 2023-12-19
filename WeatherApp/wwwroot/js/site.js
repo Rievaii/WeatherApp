@@ -46,7 +46,7 @@ function SuggestLocations() {
                             "'" + data[i].name + "'" + "," +
                             data[i].coord.lat + "," +
                             data[i].coord.lon + ")")
-                        li.appendChild(document.createTextNode(data[i].country + "-" + data[i].state + " | " + data[i].name));
+                        li.appendChild(document.createTextNode(data[i].country + (data[i].state ? " - " + data[i].state : "") + " | " + data[i].name));
                         ul.appendChild(li)
                     }
                 }
@@ -59,7 +59,8 @@ function SuggestLocations() {
 }
 
 function TriggerSuggestion(state, name, lat, lon) {
-    document.getElementById("searchInput").value = state + " | "+name + " (" + lat + ", " + lon + ")";
+    document.getElementById("searchInput").value = "";
+    document.getElementById("searchInput").placeholder = name + (state ? " | " + state : "") + " (" + lat + ", " + lon + ")" ;
     //$('#ForecastPartial').load('/home/Forecast?lat=' + lat + "&lon=" + lon);
 
     $.ajax({
