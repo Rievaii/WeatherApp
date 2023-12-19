@@ -59,9 +59,7 @@ function SuggestLocations() {
 }
 
 function TriggerSuggestion(state, name, lat, lon) {
-    debugger;
     document.getElementById("searchInput").value = state + " | "+name + " (" + lat + ", " + lon + ")";
-    document.getElementById("locationslist").replaceChildren();
     //$('#ForecastPartial').load('/home/Forecast?lat=' + lat + "&lon=" + lon);
 
     $.ajax({
@@ -71,6 +69,7 @@ function TriggerSuggestion(state, name, lat, lon) {
         datatype: 'json',
         success: function (response) {
             $('#ForecastPartial').html(response);
+            document.getElementById("locationslist").replaceChildren();
         },
         error: function () {
             alert("Возникла ошибка при запросе");
@@ -80,8 +79,6 @@ function TriggerSuggestion(state, name, lat, lon) {
 
 $(document).unbind('keypress').bind('keypress', function (e) {
     if (e.which == 13) {
-        debugger;
-
         if (document.getElementById("searchInput").value.length > 0) {
                 SuggestLocations();
         }
