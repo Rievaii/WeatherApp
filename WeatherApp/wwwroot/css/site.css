@@ -23,3 +23,7 @@ body {
 .navbar .nav-link {
     color: #fff !important;
 }
+
+.main-background {
+    background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-03/1614773306_217-p-neitralnii-fon-250.jpg');
+}

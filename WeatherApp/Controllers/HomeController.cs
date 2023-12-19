@@ -29,5 +29,10 @@ namespace WeatherApp.Controllers
             //validate model if error return error view
             return View(model);
         }
+        
+        public IActionResult AuthorizationForm()
+        {
+            return View();  
+        }
     }
 }

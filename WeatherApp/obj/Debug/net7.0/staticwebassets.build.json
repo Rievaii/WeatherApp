@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6bYsZ8gJBzECSQP7jgmIfNRlLy+uLgTopHH5OgiA4PA=",
+  "Hash": "MfEUTvmqSzQ9f9F5L/ZYv4IZ9tgQZl2JFnihwD8WMXM=",
   "Source": "WeatherApp",
   "BasePath": "_content/WeatherApp",
   "Mode": "Default",
@@ -2050,12 +2050,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\background.jpg",
+      "Identity": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\background.png",
       "SourceId": "WeatherApp",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\",
       "BasePath": "_content/WeatherApp",
-      "RelativePath": "Resources/background.jpg",
+      "RelativePath": "Resources/background.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2066,7 +2066,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Resources\\background.jpg"
+      "OriginalItemSpec": "wwwroot\\Resources\\background.png"
     },
     {
       "Identity": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\city.list.json",

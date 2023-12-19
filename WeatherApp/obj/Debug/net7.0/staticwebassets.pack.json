@@ -181,8 +181,8 @@
       "PackagePath": "staticwebassets\\WeatherApp.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\background.jpg",
-      "PackagePath": "staticwebassets\\Resources\\background.jpg"
+      "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\background.png",
+      "PackagePath": "staticwebassets\\Resources\\background.png"
     },
     {
       "Id": "C:\\Users\\vorontsov.gv\\source\\repos\\WeatherApp\\WeatherApp\\wwwroot\\Resources\\city.list.json",

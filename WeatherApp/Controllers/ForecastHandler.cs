@@ -11,7 +11,12 @@ namespace WeatherApp.Controllers
 {
     public class ForecastHandler : Controller
     {
+        private readonly IConfiguration _configuration;
 
+        public ForecastHandler(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         /// <summary>
         /// Get weather by coords
         /// </summary>
