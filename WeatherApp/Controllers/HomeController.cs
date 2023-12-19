@@ -24,6 +24,9 @@ namespace WeatherApp.Controllers
         public IActionResult Forecast(double lat, double lon)
         {
             var model = ForecastHandler.GetWeatherByCoords(lon, lat);
+            ViewBag.Country = "Russia";
+            ViewBag.State = "UD";
+            //validate model if error return error view
             return View(model);
         }
     }

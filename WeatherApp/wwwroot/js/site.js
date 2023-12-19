@@ -22,6 +22,8 @@ function SuggestLocations() {
     var prompt = document.getElementById("searchInput").value;
     var ul = document.getElementById("locationslist");
     //change to value from json 
+    debugger;
+
     $.ajax({
         url: '/forecastapicontroller/' + prompt,
         method: 'get',
@@ -57,16 +59,18 @@ function SuggestLocations() {
 }
 
 function TriggerSuggestion(state, name, lat, lon) {
+    debugger;
     document.getElementById("searchInput").value = state + " | "+name + " (" + lat + ", " + lon + ")";
     document.getElementById("locationslist").replaceChildren();
+    //$('#ForecastPartial').load('/home/Forecast?lat=' + lat + "&lon=" + lon);
+
     $.ajax({
         url: '/home/Forecast?lat=' + lat + "&lon=" + lon,
         method: 'post',
         /* (xml, json, script, html).*/
         datatype: 'json',
-        success: function (data) {
-            //this calls 2 times
-            $('#ForecastPartial').load('/home/Forecast?lat=' + lat + "&lon=" + lon);
+        success: function (response) {
+            $('#ForecastPartial').html(response);
         },
         error: function () {
             alert("Возникла ошибка при запросе");
@@ -74,8 +78,12 @@ function TriggerSuggestion(state, name, lat, lon) {
     });
 }
 
-$(document).keypress(function (e) {
+$(document).unbind('keypress').bind('keypress', function (e) {
     if (e.which == 13) {
-        $("#searchButton").click();
+        debugger;
+
+        if (document.getElementById("searchInput").value.length > 0) {
+                SuggestLocations();
+        }
     }
 });

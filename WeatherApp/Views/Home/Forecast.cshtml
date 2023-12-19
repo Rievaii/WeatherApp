@@ -7,17 +7,17 @@
             <div class="col-md-10 col-lg-8 col-xl-6">
 
                 <div class="card bg-dark text-white" style="border-radius: 40px;">
-                    @* <div class="bg-image" style="border-radius: 35px;">
+                    <div class="bg-image" style="border-radius: 35px;">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/draw1.webp"
                     class="card-img" alt="weather" />
                     <div class="mask" style="background-color: rgba(190, 216, 232, .5);"></div>
-                    </div> *@
+                    </div>
                     <div class="card-img-overlay text-dark p-5">
                         <h4 class="mb-0">@Model.Name, @ViewBag.State, @ViewBag.Country</h4>
-                        <p class="display-2 my-3">@Model.main.Temp°C</p>
-                        <p class="mb-2">Feels Like: <strong>@Model.main.Feels_like °C</strong></p>
+                        <p class="display-2 my-3">@Model.main.Temp °C</p>
+                        <p class="mb-2">Ощущается как: <strong>@Model.main.Feels_like °C</strong></p>
                         @*TODO:check what exactly weather element*@
-                        <h5>Snowy</h5>
+                        <h5>@Model.weather[0]?.Description</h5>
                         <ul class="list-group list-group-horizontal-lg justify-content-center" id="locationslist">
                             <li class="list-group-item">
                                 <img src="https://i.imgur.com/B9kqOzp.png" height="17px">
