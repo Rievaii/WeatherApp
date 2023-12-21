@@ -20,16 +20,16 @@
                         <h5>@Model.weather[0]?.Description</h5>
                         <ul class="list-group list-group-horizontal-lg justify-content-center" id="locationslist">
                             <li class="list-group-item">
-                                <img src="https://i.imgur.com/B9kqOzp.png" height="17px">
+                                <img src="https://i.imgur.com/B9kqOzp.png" height="17px" title="Скорость ветра">
 
                                 <span> @Model.wind?.Speed km/h  </span>
                             </li>
                             <li class="list-group-item">
-                                <img src="~/Resources/free-icon-humidity-1585362 (1).png" height="17px">
+                                <img src="~/Resources/free-icon-humidity-1585362 (1).png" height="17px" title="Влажность">
                                 <span> @Model.main?.Humidity% </span>
                             </li>
                             <li class="list-group-item">
-                                <img src="https://i.imgur.com/wGSJ8C5.png" height="17px">
+                                <img src="https://i.imgur.com/wGSJ8C5.png" height="17px" title="Давление">
                                 <span> @Model.main?.Pressure h </span>
                             </li>
                         </ul>

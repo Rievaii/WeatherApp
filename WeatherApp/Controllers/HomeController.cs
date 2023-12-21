@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
 using WeatherApp.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WeatherApp.Controllers
 {
@@ -28,11 +25,6 @@ namespace WeatherApp.Controllers
             ViewBag.State = "UD";
             //validate model if error return error view
             return View(model);
-        }
-        
-        public IActionResult AuthorizationForm()
-        {
-            return View();  
         }
     }
 }
