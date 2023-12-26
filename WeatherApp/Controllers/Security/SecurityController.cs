@@ -22,18 +22,32 @@ namespace WeatherApp.Controllers.Security
             return View();
         }
 
+        /// <summary>
+        /// Login Form
+        /// </summary>
+        /// <param name="Login"></param>
+        /// <param name="Password"></param>
+        /// <returns>Index view with user model if authorized</returns>
         public IActionResult HandleForm(string Login, string Password)
         {
             //var form = context.Request.Form;
             if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password))
-                //redirect to error 
+            {
+                ViewBag.LoginError = "Введите логин или пароль";
                 return View("AuthorizationForm");
+            }
 
-            UsersModel? CurrentUser = ctx.Users.FirstOrDefault(p => p.Login == Login && p.Password == Password);
-            //if (CurrentUser is null) return Results.Unauthorized();
+            if (ctx.Users.Any(p => p.Login == Login && p.Password == Password))
+            {
+                UsersModel? CurrentUser = ctx.Users.FirstOrDefault(p => p.Login == Login && p.Password == Password);
+                return View("~/Views/Home/Index.cshtml", CurrentUser);
 
-            //add cookies
-            return View("~/Views/Home/Index.cshtml", CurrentUser);
+            }
+            else
+            {
+                ViewBag.LoginError = "Неправильный логин/пароль";
+                return View("AuthorizationForm");
+            }
         }
     }
 }
