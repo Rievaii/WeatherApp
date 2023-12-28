@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,9 +22,12 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => options.LoginPath = "/Security/AuthorizationForm");
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = new PathString("/Security/AuthorizationForm");
+    //options.AccessDeniedPath = "/account/denied";
+});
 
-builder.Services.AddAuthorization();
 
 builder.Services.AddRazorPages();
 
@@ -44,8 +48,10 @@ app.UseAuthorization();
 app.UseAuthentication();
 
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Security}/{action=AuthorizationForm}/{id?}");
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Security}/{action=AuthorizationForm}/{id?}");
 
 app.Run();

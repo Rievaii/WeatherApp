@@ -5,16 +5,23 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using WeatherApp.Models.Security.Abstract;
+using WeatherApp.Models.Security;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace WeatherApp.Controllers.Security
 {
-    public class SecurityController : Controller
+    public class SecurityController : Controller, IUsers
     {
         private readonly WeatherDataContext ctx;
+        private string secretKey;
 
-        public SecurityController(WeatherDataContext _ctx)
+        public SecurityController(WeatherDataContext _ctx, IConfiguration configuration)
         {
             ctx = _ctx;
+            secretKey = configuration.GetValue<string>("ApiSettings:Secret")!;
         }
 
         public IActionResult AuthorizationForm()
@@ -36,8 +43,8 @@ namespace WeatherApp.Controllers.Security
                 ViewBag.LoginError = "Введите логин или пароль";
                 return View("AuthorizationForm");
             }
-
-            if (ctx.Users.Any(p => p.Login == Login && p.Password == Password))
+            //add cookies
+            if (1==1)
             {
                 UsersModel? CurrentUser = ctx.Users.FirstOrDefault(p => p.Login == Login && p.Password == Password);
                 return View("~/Views/Home/Index.cshtml", CurrentUser);
@@ -48,6 +55,61 @@ namespace WeatherApp.Controllers.Security
                 ViewBag.LoginError = "Неправильный логин/пароль";
                 return View("AuthorizationForm");
             }
+        }
+
+        public bool isUnique(string username)
+        {
+            if (ctx.Users.Any(x => x.Login == username))
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
+        public LoginResponse? Login(LoginRequest loginRequest)
+        {
+            if (ctx.Users.Any(p => p.Login.ToLower() == loginRequest.Login.ToLower() && p.Password == loginRequest.Password))
+            {
+                UsersModel? CurrentUser = ctx.Users.FirstOrDefault(p => p.Login.ToLower() == loginRequest.Login.ToLower() && p.Password == loginRequest.Password);
+                
+                var tokenHandler = new JwtSecurityTokenHandler();
+
+                //Вытаскиваем наш ключ в виде массива байт 
+                var key = Encoding.ASCII.GetBytes(secretKey);
+                
+                //Описание токена: клеймы в зашифрованном виде, срок и зашифрованная подпись на основе key
+                var tokenDescriptior = new SecurityTokenDescriptor()
+                {
+                    //Требования к данным для идентификаци
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim(ClaimTypes.Name, CurrentUser!.Id.ToString()),
+
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    //Удостоверяющие подписи
+                    SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                //Создаем токен по указанным статам
+                var token = tokenHandler.CreateToken(tokenDescriptior);
+
+                LoginResponse loginResponse = new LoginResponse()
+                {
+                    Token = tokenHandler.WriteToken(token),
+                    Users = CurrentUser
+                };
+                return loginResponse;
+            }else { return null; }
+        }
+
+        public UsersModel Registration(RegistrationRequest registrationRequest)
+        {
+            UsersModel newUser = new UsersModel() { Login = registrationRequest.Login, Password = registrationRequest.Password };
+            ctx.Users.Add(newUser);
+            ctx.SaveChanges();
+            newUser.Password = "";
+            return newUser;
         }
     }
 }
