@@ -13,12 +13,12 @@ using System.Text;
 
 namespace WeatherApp.Controllers.Security
 {
-    public class SecurityController : Controller, IUsers
+    public class UsersController : Controller, IUsers
     {
         private readonly WeatherDataContext ctx;
         private string secretKey;
 
-        public SecurityController(WeatherDataContext _ctx, IConfiguration configuration)
+        public UsersController(WeatherDataContext _ctx, IConfiguration configuration)
         {
             ctx = _ctx;
             secretKey = configuration.GetValue<string>("ApiSettings:Secret")!;
@@ -66,7 +66,7 @@ namespace WeatherApp.Controllers.Security
             else { return false; }
         }
 
-        public LoginResponse? Login(LoginRequest loginRequest)
+        public LoginResponse Login(LoginRequest loginRequest)
         {
             if (ctx.Users.Any(p => p.Login.ToLower() == loginRequest.Login.ToLower() && p.Password == loginRequest.Password))
             {
@@ -100,7 +100,10 @@ namespace WeatherApp.Controllers.Security
                     Users = CurrentUser
                 };
                 return loginResponse;
-            }else { return null; }
+            }else 
+            { 
+                return new LoginResponse() { Token="", Users = null };   
+            }
         }
 
         public UsersModel Registration(RegistrationRequest registrationRequest)

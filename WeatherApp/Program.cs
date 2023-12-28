@@ -9,9 +9,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using WeatherApp.Controllers.Security;
+using WeatherApp.Models.Security.Abstract;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IUsers, UsersController>();
 
 builder.Services.AddDbContext<WeatherDataContext>(options =>
     options.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database=WAData;Trusted_Connection=True;"));
