@@ -53,9 +53,8 @@ app.UseAuthentication();
 
 
 app.MapRazorPages();
-app.MapDefaultControllerRoute();
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Security}/{action=AuthorizationForm}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Users}/{action=AuthorizationForm}/{id?}");
 
 app.Run();

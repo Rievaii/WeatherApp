@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WeatherApp.Models;
 
 namespace WeatherApp.Controllers
 {
-    public class HomeController : Controller
+    [Authorize]
+    public class ForecastController : Controller
     {
         private readonly WeatherDataContext ctx;
 
-        public HomeController(WeatherDataContext _ctx)
+        public ForecastController(WeatherDataContext _ctx)
         {
             ctx = _ctx;
         }
@@ -16,11 +18,12 @@ namespace WeatherApp.Controllers
         {
             return View();
         }
-
+        
         // ForecastApiController/lat/lon
         public IActionResult Forecast(double lat, double lon)
         {
             var model = ForecastHandler.GetWeatherByCoords(lon, lat);
+            //find location by lat lon 
             ViewBag.Country = "Russia";
             ViewBag.State = "UD";
             //validate model if error return error view

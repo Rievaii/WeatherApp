@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WeatherApp.Models;
 
 
@@ -8,6 +9,7 @@ namespace WeatherApp.Controllers
 {
     [Route("ForecastApiController")]
     [ApiController]
+    [Authorize]
     public class ForecastApiController : ControllerBase
     {
         // GET ForecastApiController/Moscow

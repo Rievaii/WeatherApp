@@ -1,5 +1,5 @@
 ﻿
-<form method="post" action="/Security/HandleForm">
+<form method="post" action="/api/auth/login">
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -13,11 +13,11 @@
                             <p class="text-white-50 mb-5">Пожалуйста введите свой логин и пароль</p>
 
                             <div class="form-outline form-white mb-4">
-                                    <input id="typeEmailX" class="form-control form-control-lg" name='Login'  placeholder="Логин" />
+                                    <input id="typeEmailX" class="form-control form-control-lg" name='request.Login'  placeholder="Логин" />
                             </div>
 
                             <div class="form-outline form-white mb-4">
-                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" name='Password' placeholder="Пароль" />
+                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" name='request.Password' placeholder="Пароль" />
                             </div>
                             <p class="small mb-5 pb-lg-2" style="color:red">@ViewBag.LoginError</p>
 

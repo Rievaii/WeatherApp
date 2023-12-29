@@ -15,27 +15,30 @@ namespace WeatherApp.Controllers.Security
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        public IActionResult Login([FromForm] LoginRequest request)
         {
             var LoginResponse = _userRepo.Login(request);
             if (LoginResponse.Users == null || string.IsNullOrEmpty(LoginResponse.Token))
-                return BadRequest(new { message = "Неправильный логин или пароль" });
-            //return auth form
-            return View();
+            {
+                @ViewBag.LoginError = "Неправильный логин или пароль";
+                return View("~/Views/Security/AuthorizationForm.cshtml");
+            }
+            return View("~/Views/Home/Index.cshtml");
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public IActionResult Register(RegistrationRequest request) 
         {
             if (_userRepo.isUnique(request.Login))
             {
                 var RegistrationResponse = _userRepo.Registration(request);
-                return View();
-
+                return View("~/Views/Home/Index.cshtml");
             }
-            //такой логин уже существует
-            return View();
-            //return registration form
+            else
+            {
+                ViewBag.RegistrationError = "Такой логин уже существует";
+                return View("~/Views/Security/RegistrationForm.cshtml");
+            }
         }
     }
 }

@@ -6,9 +6,11 @@ using System.Text.Json.Serialization;
 using System.Net.NetworkInformation;
 using System;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WeatherApp.Controllers
 {
+    [Authorize]
     public class ForecastHandler : Controller
     {
         private readonly IConfiguration _configuration;
