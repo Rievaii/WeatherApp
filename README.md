@@ -27,4 +27,7 @@ INT | STR | STR |
 **Стек:**
 1) C# ASP.net MVC
 2) JS
-3) 
+
+
+TODO: 
+1) MIddleware JWT Token
